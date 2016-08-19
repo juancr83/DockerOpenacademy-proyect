@@ -7,7 +7,9 @@ class Course(models.Model):
 
     name = fields.Char()
     description = fields.Text()
-    responsible = fields.Many2one('res.users')
+    responsible = fields.Many2one('res.users',
+				ondelete='set null',
+				string="Responsible", index=True)
     sessions = fields.One2many('session','course')
 
 class Session(models.Model):
