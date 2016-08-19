@@ -28,7 +28,12 @@
 	        <field name="description"/>
 	      </page>
               <page string="Sessions">
-                <field nolabel="1" name="sessions"/>
+                <field nolabel="1" name="sessions">
+		  <tree string="Registeres sessions" editable="botton">
+		    <field name="name"/>
+		    <field name="instructor"/>
+		  </tree>
+		</field>
               </page>
 	     </notebook>
          </sheet>
