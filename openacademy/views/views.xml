@@ -1,0 +1,155 @@
+<openerp>
+
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="course_list">
+      <field name="name">Course List</field>
+      <field name="model">course</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="responsible"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="course_form">
+      <field name="name">Course Form</field>
+      <field name="model">course</field>
+      <field name="arch" type="xml">
+        <form>
+        <sheet>	
+	    <h1><field name="name"/></h1>
+            <notebook>
+	      <page string="Description">
+                <field name="responsible"/>
+	        <field name="description"/>
+	      </page>
+              <page string="Sessions">
+                <field nolabel="1" name="sessions"/>
+              </page>
+	     </notebook>
+         </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="course_search">
+      <field name="name">Course Search</field>
+      <field name="model">course</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="responsible"/>
+          <field name="description"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="act_course_tree">
+      <field name="name">Courses</field>
+      <field name="res_model">course</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="openacademy.action_server">
+      <field name="name">openacademy server</field>
+      <field name="model_id" ref="model_openacademy_openacademy"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Academy" id="academy_root"/>
+    
+    <!-- menu categories -->
+    
+    <menuitem name="Configuration" id="academy" parent="academy_root"/>
+    <menuitem name="Courses" id="academy_courses" parent="academy"
+	action="act_course_tree"/>
+
+    <record model="ir.actions.act_window" id="act_session_tree">
+      <field name="name">Sessions</field>
+      <field name="res_model">session</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Session" id="academy_sessions" parent="academy"
+        action="act_session_tree"/>
+
+    <record model="ir.ui.view" id="session_list">
+      <field name="name">Session List</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="instructor"/>
+          <field name="course"/>
+          <field name="start_date"/>
+          <field name="duration"/>
+          <field name="seats"/>
+          <field name="percentage_seats_taken" widget="progressbar"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_form">
+      <field name="name">Session Form</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <form>
+        <sheet>
+            <h1><field name="name"/></h1>
+               <group>
+               <group string="Information" cols="3">
+                <field name="course"/>
+                <field name="instructor" domain="['|',('instructor','=', True),'|',('category_id.name','ilike','Teacher'),('category_id.parent_id.name','ilike','Teacher')]"/>
+                <field name="start_date"/>
+                <field name="duration"/>
+                <field name="seats"/>
+                <field name="percentage_seats_taken" widget="progressbar"/>
+               </group>
+               <group string="Attendees" cols="3">
+                   <field name="attendees" nolabel="1"/>
+               </group>
+               </group>
+         </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_search">
+      <field name="name">Session Search</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="course"/>
+          <field name="start_date"/>
+          <field name="instructor"/>
+        </search>
+      </field>
+    </record>
+   
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="openacademy.menu_1_list" parent="openacademy.menu_1"
+              action="openacademy.action_window"/>
+    <menuitem name="Server to list" id="openacademy" parent="openacademy.menu_2"
+              action="openacademy.action_server"/>
+    -->
+  </data>
+</openerp>
