@@ -21,7 +21,7 @@ class Session(models.Model):
     start_date = fields.Date()
     duration = fields.Float(help="Duration in Days")
     seats = fields.Integer()
-    attendees = fields.Many2many('res.partner')
+    attendees = fields.Many2many('res.partner', string="Attendees")
     percentage_seats_taken = fields.Float(compute="_compute_perc_seats_taken", store=True)
 
 
