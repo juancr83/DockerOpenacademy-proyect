@@ -5,6 +5,7 @@ from openerp import models, fields
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    instructor = fields.Boolean(help="This partner give train our course")
+    instructor = fields.Boolean(default=False,help="This partner give train our course")
+    sessions = fields.Many2many('session', string="Session as instructor", readonly=True)
 
 
