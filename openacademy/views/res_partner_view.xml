@@ -13,6 +13,18 @@
          </xpath>
       </field>
     </record>
+
+    <record model="ir.actions.act_window" id="contact_list_action">
+      <field name="name">Contacts</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem id="configuration_menu" name="Configuration"
+      parent="academy_root"/>
+    <menuitem id="contact_menu" name="Contacts"
+      parent="configuration_menu"
+      action="contact_list_action"/>
   </data>
 </openerp>
 

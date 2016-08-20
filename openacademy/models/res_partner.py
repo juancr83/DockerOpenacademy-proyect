@@ -6,6 +6,6 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     instructor = fields.Boolean(default=False,help="This partner give train our course")
-    sessions = fields.Many2many('session', string="Session as instructor", readonly=True)
+    sessions = fields.Many2many('session', string="Session as atendes", readonly=True)
 
 
