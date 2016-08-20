@@ -16,7 +16,12 @@ class Session(models.Model):
     _name = 'session'
 
     name = fields.Char()
-    instructor = fields.Many2one('res.partner')
+    instructor = fields.Many2one('res.partner',string="Instructor", 
+                        domain=['|',
+                                ("instructor","=",True),
+                                ("category_id.name","ilike","Teacher")
+                         ]
+                        )
     course = fields.Many2one('course')
     start_date = fields.Date()
     duration = fields.Float(help="Duration in Days")
