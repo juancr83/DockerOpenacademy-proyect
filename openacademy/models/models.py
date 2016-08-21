@@ -24,7 +24,6 @@ class Session(models.Model):
                         )
     course = fields.Many2one('course')
     start_date = fields.Date(default=fields.Date.today)
-    datetime_eg = fields.Datetime(default=fields.Datetime.now)
     duration = fields.Float(help="Duration in Days")
     seats = fields.Integer()
     attendees = fields.Many2many('res.partner', string="Attendees")
