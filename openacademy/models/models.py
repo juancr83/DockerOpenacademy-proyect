@@ -22,6 +22,20 @@ class Course(models.Model):
          "The course title must be unique"),
     ]
 
+    @api.one
+    def copy(self, default=None):
+#        print "Estoy haciendo una prueba ****************************"
+#        default['name'] = self.name + ' (copy)'
+        copied_count = self.search_count(
+            [('name', '=like', u"Copy of {}%".format(self.name))])
+        if not copied_count:
+            new_name = u"Copy of {}".format(self.name)
+        else:
+            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+
+        default['name'] = new_name
+        return super(Course, self).copy(default)
+
 class Session(models.Model):
     _name = 'session'
 
