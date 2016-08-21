@@ -12,6 +12,16 @@ class Course(models.Model):
 				string="Responsible", index=True)
     sessions = fields.One2many('session','course')
 
+    _sql_constraints = [
+        ('name_description_check',
+         'CHECK(name != description)',
+         "The title of the course should not be the description"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "The course title must be unique"),
+    ]
+
 class Session(models.Model):
     _name = 'session'
 
