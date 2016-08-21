@@ -127,6 +127,7 @@
                 <field name="duration"/>
                 <field name="seats"/>
                 <field name="percentage_seats_taken" widget="progressbar"/>
+                <field name="active"/>
                </group>
                <group string="Attendees" cols="3">
                    <field name="attendees" nolabel="1"/>

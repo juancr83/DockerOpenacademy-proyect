@@ -23,11 +23,13 @@ class Session(models.Model):
                          ]
                         )
     course = fields.Many2one('course')
-    start_date = fields.Date()
+    start_date = fields.Date(default=fields.Date.today)
+    datetime_eg = fields.Datetime(default=fields.Datetime.now)
     duration = fields.Float(help="Duration in Days")
     seats = fields.Integer()
     attendees = fields.Many2many('res.partner', string="Attendees")
     percentage_seats_taken = fields.Float(compute="_compute_perc_seats_taken", store=True)
+    active = fields.Boolean(default=True)
 
 
     @api.depends('attendees','seats')
