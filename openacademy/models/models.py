@@ -57,6 +57,23 @@ class Session(models.Model):
     end_date = fields.Date(string="End Date", store=True,
         compute='_get_end_date', inverse='_set_end_date')
     color = fields.Integer()
+    state = fields.Selection([
+        ('draft', "Draft"),
+        ('confirmed', "Confirmed"),
+        ('done', "Done"),
+    ], default='draft')
+
+    @api.multi
+    def action_draft(self):
+        self.state = 'draft'
+
+    @api.multi
+    def action_confirm(self):
+        self.state = 'confirmed'
+
+    @api.multi
+    def action_done(self):
+        self.state = 'done'
 
     @api.depends('attendees','seats')
     def _compute_perc_seats_taken(self):
