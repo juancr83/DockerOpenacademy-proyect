@@ -96,8 +96,8 @@ class Session(models.Model):
         if not (self.start_date and self.duration):
             self.end_date = self.start_date
             return
-        start = fields.Datetime.from_string(r.start_date)
-        duration = timedelta(days=r.duration, seconds=-1)
+        start = fields.Datetime.from_string(self.start_date)
+        duration = timedelta(days=self.duration, seconds=-1)
         self.end_date = start + duration
 
     def _set_end_date(self):
