@@ -56,6 +56,7 @@ class Session(models.Model):
     active = fields.Boolean(default=True)
     end_date = fields.Date(string="End Date", store=True,
         compute='_get_end_date', inverse='_set_end_date')
+    color = fields.Integer()
 
     @api.depends('attendees','seats')
     def _compute_perc_seats_taken(self):
