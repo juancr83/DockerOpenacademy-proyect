@@ -31,6 +31,7 @@
         'views/res_partner_view.xml',
         'data/data.xml',
         'views/session_workflow.xml',
+        'views/openacademy_wizard_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
