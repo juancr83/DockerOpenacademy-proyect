@@ -152,10 +152,22 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="openacademy_session_graph_view">
+            <field name="name">openacademy.session.graph</field>
+            <field name="model">session</field>
+            <field name="arch" type="xml">
+                <graph string="Participations by Courses">
+                    <field name="course"/>
+                    <field name="attendees_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
     <record model="ir.actions.act_window" id="act_session_tree">
       <field name="name">Sessions</field>
       <field name="res_model">session</field>
-      <field name="view_mode">kanban,tree,form,calendar</field>
+      <field name="view_mode">kanban,tree,form,calendar,graph</field>
     </record>
 
     <menuitem name="Session" id="academy_sessions" parent="academy"

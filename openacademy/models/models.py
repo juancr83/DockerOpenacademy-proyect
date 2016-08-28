@@ -62,6 +62,12 @@ class Session(models.Model):
         ('confirmed', "Confirmed"),
         ('done', "Done"),
     ], default='draft')
+    attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
+
+    @api.depends('attendees')
+    def _get_attendees_count(self):
+        for r in self:
+            r.attendees_count = len(r.attendees)
 
     @api.multi
     def action_draft(self):
