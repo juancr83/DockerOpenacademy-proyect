@@ -32,6 +32,7 @@
         'data/data.xml',
         'views/session_workflow.xml',
         'views/openacademy_wizard_view.xml',
+        'report/openacademy_session_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
