@@ -27,6 +27,8 @@ class Course(models.Model):
     def copy(self, default=None):
 #        print "Estoy haciendo una prueba ****************************"
 #        default['name'] = self.name + ' (copy)'
+        if default is None:
+            default = {}
         copied_count = self.search_count(
             [('name', '=like', u"Copy of {}%".format(self.name))])
         if not copied_count:
